@@ -86,5 +86,4 @@ EOF
 echo "Reloading systemd daemon and starting pipe service..."
 sudo systemctl daemon-reload && \
 sudo systemctl enable pipe && \
-sudo systemctl restart pipe && \
-journalctl -u pipe -fo cat
+sudo systemctl restart pipe
