@@ -75,7 +75,7 @@ ExecStart=$HOME/pipe-network/pop \
     --pubKey $PUBKEY \
     --max-disk $DISK \
     --cache-dir $HOME/pipe-network/download_cache
-    --signup-by-referral-route c90a5ac63a86f7f7
+    --signup-by-referral-route b6835b3fb3b2126e
 Restart=always
 RestartSec=5
 LimitNOFILE=65536
