@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Modified version of dante4rt's script"
+
 cd $HOME
 sudo apt install bc -y
 
