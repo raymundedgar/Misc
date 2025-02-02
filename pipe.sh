@@ -16,7 +16,6 @@ systemctl stop dcdnd && systemctl disable dcdnd
 
 echo "Creating $HOME/pipe-network folder..."
 mkdir -p $HOME/pipe-network
-cd $HOME/pipe-network
 
 binary_url='https://dl.pipecdn.app/v0.2.2/pop'
 
@@ -70,7 +69,7 @@ ExecStart=$HOME/pipe-network/pop \
     --pubKey $PUBKEY \
     --max-disk $DISK \
     --cache-dir $HOME/pipe-network/download_cache
-
+    --signup-by-referral-route c90a5ac63a86f7f7
 Restart=always
 RestartSec=5
 LimitNOFILE=65536
@@ -89,5 +88,3 @@ sudo systemctl daemon-reload && \
 sudo systemctl enable pipe && \
 sudo systemctl restart pipe && \
 journalctl -u pipe -fo cat
-
-./pop --signup-by-referral-route c90a5ac63a86f7f7
