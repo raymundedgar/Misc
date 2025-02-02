@@ -37,8 +37,7 @@ get_total_ram_gb() {
     echo "$total_ram_gb"
 }
 RAM=$(get_total_ram_gb)
-RAM_INT=${RAM%.*}
-if [ "$RAM" -lt 4 ]; then
+if (( $(echo "$RAM < 4" | bc -l) )); then
   echo "RAM must be at least 4GB. Exiting."
   exit 1
 fi
