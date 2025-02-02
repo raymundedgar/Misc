@@ -2,6 +2,10 @@
 
 echo "Modified version of dante4rt's script"
 
+sudo apt update
+sudo apt install libssl3
+sudo apt install bc -y
+
 # Function to get total RAM in GB
 get_total_ram_gb() {
     total_ram_bytes=$(free -b | awk '/^Mem:/{print $2}')
@@ -26,7 +30,6 @@ if [ "$DISK" -lt 100 ]; then
 fi
 
 cd $HOME
-sudo apt install bc -y
 
 echo "Stopping any process using port 8003..."
 PID=$(lsof -ti :8003)
