@@ -75,6 +75,7 @@ ExecStart=$HOME/pipe-network/pop \
     --pubKey $PUBKEY \
     --max-disk $DISK \
     --cache-dir $HOME/pipe-network/download_cache
+    --signup-by-referral-route c90a5ac63a86f7f7
 Restart=always
 RestartSec=5
 LimitNOFILE=65536
@@ -91,6 +92,4 @@ EOF
 echo "Reloading systemd daemon and starting pipe service..."
 sudo systemctl daemon-reload && \
 sudo systemctl enable pipe && \
-sudo systemctl restart pipe && \
-cd $HOME/pipe-network && \
-./pop --signup-by-referral-route c90a5ac63a86f7f7
+sudo systemctl restart pipe
