@@ -2,6 +2,29 @@
 
 echo "Modified version of dante4rt's script"
 
+# Function to get total RAM in GB
+get_total_ram_gb() {
+    total_ram_bytes=$(free -b | awk '/^Mem:/{print $2}')
+    total_ram_gb=$(echo "scale=2; $total_ram_bytes / 1024 / 1024 / 1024" | bc)
+    echo "$total_ram_gb"
+}
+RAM=$(get_total_ram_gb)
+if (( $(echo "$RAM < 4" | bc -l) )); then
+  echo "RAM must be at least 4GB. Exiting."
+  exit 1
+fi
+RAM=4
+
+get_total_disk_size_gb() {
+    total_disk_size_gb=$(df -BG --total | awk '/^total/{print $2}' | tr -d 'G')
+    echo "$total_disk_size_gb"
+}
+DISK=$(get_total_disk_size_gb)
+if [ "$DISK" -lt 100 ]; then
+  echo "Disk space must be at least 100GB. Exiting."
+  exit 1
+fi
+
 cd $HOME
 sudo apt install bc -y
 
@@ -31,30 +54,6 @@ else
     echo "Invalid URL. Please ensure the link starts with 'https'."
     exit 1
 fi
-
-# Function to get total RAM in GB
-get_total_ram_gb() {
-    total_ram_bytes=$(free -b | awk '/^Mem:/{print $2}')
-    total_ram_gb=$(echo "scale=2; $total_ram_bytes / 1024 / 1024 / 1024" | bc)
-    echo "$total_ram_gb"
-}
-RAM=$(get_total_ram_gb)
-if (( $(echo "$RAM < 4" | bc -l) )); then
-  echo "RAM must be at least 4GB. Exiting."
-  exit 1
-fi
-RAM=4
-
-get_total_disk_size_gb() {
-    total_disk_size_gb=$(df -BG --total | awk '/^total/{print $2}' | tr -d 'G')
-    echo "$total_disk_size_gb"
-}
-DISK=$(get_total_disk_size_gb)
-if [ "$DISK" -lt 100 ]; then
-  echo "Disk space must be at least 100GB. Exiting."
-  exit 1
-fi
-
 
 SERVICE_FILE="/etc/systemd/system/pipe.service"
 echo "Creating $SERVICE_FILE..."
