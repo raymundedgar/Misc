@@ -34,6 +34,7 @@ fi
 get_total_ram_gb() {
     total_ram_bytes=$(free -b | awk '/^Mem:/{print $2}')
     total_ram_gb=$(echo "scale=2; $total_ram_bytes / 1024 / 1024 / 1024" | bc)
+    echo "$total_ram_gb"
 }
 RAM=$(get_total_ram_gb)
 if [ "$RAM" -lt 4 ]; then
