@@ -46,7 +46,7 @@ get_total_disk_size_gb() {
     total_disk_size_gb=$(df -BG --total | awk '/^total/{print $2}' | tr -d 'G')
     echo "$total_disk_size_gb"
 }
-$DISK=$(get_total_disk_size_gb)
+DISK=$(get_total_disk_size_gb)
 if [ "$DISK" -lt 100 ]; then
   echo "Disk space must be at least 100GB. Exiting."
   exit 1
