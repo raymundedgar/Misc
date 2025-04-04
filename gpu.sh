@@ -11,7 +11,7 @@ curl -fsSL https://dria.co/launcher | bash
 export PATH="$HOME/.dria/bin:$PATH"
 
 # Edit the auto run when reboot
-echo "" >> /root/onstart.sh
+echo "#!/bin/bash" > /root/onstart.sh
 
 echo "# Kuzco" >> /root/onstart.sh
 echo "SESSION_NAME=\"kuzco\"" >> /root/onstart.sh
