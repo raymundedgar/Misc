@@ -10,23 +10,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 curl -fsSL https://dria.co/launcher | bash
 export PATH="$HOME/.dria/bin:$PATH"
 
-# Edit the auto run when reboot
-echo "#!/bin/bash" > /root/onstart.sh
-
-echo "# Kuzco" >> /root/onstart.sh
-echo "SESSION_NAME=\"kuzco\"" >> /root/onstart.sh
-echo "COMMAND=\"\"" >> /root/onstart.sh
-echo "tmux new-session -d -s $SESSION_NAME" >> /root/onstart.sh
-echo "tmux send-keys -t $SESSION_NAME \"$COMMAND\" C-m" >> /root/onstart.sh
-
-echo "# Gensyn" >> /root/onstart.sh
-echo "SESSION_NAME=\"gensyn\"" >> /root/onstart.sh
-echo "tmux new-session -d -s $SESSION_NAME" >> /root/onstart.sh
-echo "COMMAND=\"cd /root/rl-swarm && python3 -m venv .venv && source .venv/bin/activate\"" >> /root/onstart.sh
-echo "tmux send-keys -t $SESSION_NAME \"$COMMAND\" C-m" >> /root/onstart.sh
-
-echo "# Dria" >> /root/onstart.sh
-echo "SESSION_NAME=\"dria\"" >> /root/onstart.sh
-echo "tmux new-session -d -s $SESSION_NAME" >> /root/onstart.sh
-echo "COMMAND=\"dkn-compute-launcher start\"" >> /root/onstart.sh
-echo "tmux send-keys -t $SESSION_NAME \"$COMMAND\" C-m" >> /root/onstart.sh
+# Gensyn
+curl -sSL https://raw.githubusercontent.com/zunxbt/installation/main/node.sh | bash
+sudo apt update && sudo apt install -y python3 python3-venv python3-pip curl screen git yarn && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && sudo apt update && sudo apt install -y yarn
+rm -rf rl-swarm && git clone https://github.com/SKaaalper/rl-swarm.git && cd rl-swarm
