@@ -9,6 +9,6 @@ tmux
 curl -fsSL https://inference.supply/install.sh | sh
 
 # Dria
-curl -fsSL https://ollama.com/install.sh | sh
 curl -fsSL https://dria.co/launcher | bash
 export PATH="$HOME/.dria/bin:$PATH"
+curl -fsSL https://ollama.com/install.sh | sh
