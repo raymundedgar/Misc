@@ -2,6 +2,9 @@
 
 apt update && apt install -y sudo curl tmux pciutils
 
+# open tmux session
+tmux
+
 # Kuzco
 curl -fsSL https://inference.supply/install.sh | sh
 
