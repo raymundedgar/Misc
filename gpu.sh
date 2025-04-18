@@ -23,5 +23,3 @@ tmux send-keys -t "kuzco" "kuzco worker start --worker FxAJL3XlkTTrh5-MwkO-x --c
 tmux new-session -d -s "dria"
 SESSION="dria"; for ((i=1; i<=20; i++)); do tmux new-window -t "$SESSION:" -n "$i"; tmux send-keys -t "$SESSION:$i" "dkn-compute-launcher --profile $i start" C-m; done
 EOF
-
-chmod +x ~/onstart.sh
